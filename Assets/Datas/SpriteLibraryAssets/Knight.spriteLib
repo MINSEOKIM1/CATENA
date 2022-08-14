@@ -151,9 +151,9 @@ MonoBehaviour:
     m_OverrideEntries:
     - m_Name: 0
       m_Hash: -186917087
-      m_Sprite: {fileID: -8271350433104967261, guid: cf52dab039dcc4eae9881c7102e3572b, type: 3}
+      m_Sprite: {fileID: -820600306702451146, guid: e125ba17d01914ee9a0ba4926a646a31, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -8271350433104967261, guid: cf52dab039dcc4eae9881c7102e3572b, type: 3}
+      m_SpriteOverride: {fileID: -820600306702451146, guid: e125ba17d01914ee9a0ba4926a646a31, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 1
   - m_Name: "\uC67C\uD314"
