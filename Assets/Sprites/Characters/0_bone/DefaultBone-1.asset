@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8da9418a6bf493e93ef4c7b7575847, type: 3}
+  m_Name: DefaultBone-1
+  m_EditorClassIdentifier: 
+  m_SpriteBones:
+  - m_Name: body_bottom
+    m_Guid: b1746c1789181442abc77ce15532f71e
+    m_Position: {x: 128.56165, y: 127.89613, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0.6831856, w: 0.7302448}
+    m_Length: 1.3181505
+    m_ParentId: -1
+    m_Color:
+      serializedVersion: 2
+      rgba: 4278190335
+  - m_Name: body_main
+    m_Guid: 4eaebd929d2a44ff49571d287f3f37ac
+    m_Position: {x: 1.3181458, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: -0.07961344, w: 0.9968258}
+    m_Length: 7.827253
+    m_ParentId: 0
+    m_Color:
+      serializedVersion: 2
+      rgba: 4278255615
+  - m_Name: body_top
+    m_Guid: ac55680b06fe04d2c83a22ac563a5024
+    m_Position: {x: 7.8272552, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: -0.09309156, w: 0.99565756}
+    m_Length: 1.5312811
+    m_ParentId: 1
+    m_Color:
+      serializedVersion: 2
+      rgba: 4278255360
+  - m_Name: neck
+    m_Guid: f18405f72f5884f56b5fdc83accd2727
+    m_Position: {x: 1.5312653, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0.116019465, w: 0.993247}
+    m_Length: 1.9606403
+    m_ParentId: 2
+    m_Color:
+      serializedVersion: 2
+      rgba: 4294967040
+  - m_Name: head
+    m_Guid: 95d77d9117ae048738ca76f59b330cb9
+    m_Position: {x: 1.9606323, y: 0.0000076293945, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0.11052022, w: 0.9938739}
+    m_Length: 12.637086
+    m_ParentId: 3
+    m_Color:
+      serializedVersion: 2
+      rgba: 4294901760
+  - m_Name: right-arm
+    m_Guid: 5fabe21b05b1b432b815076c69f9eaa6
+    m_Position: {x: 0.9036865, y: 5.372078, z: 0}
+    m_Rotation: {x: 0, y: -0, z: -0.9993873, w: 0.035000283}
+    m_Length: 9.401539
+    m_ParentId: 2
+    m_Color:
+      serializedVersion: 2
+      rgba: 4294902015
+  - m_Name: left-arm
+    m_Guid: 3be6ca71e1b664ecd81a35c7c8f2249c
+    m_Position: {x: 4.34787, y: -4.0315475, z: 0}
+    m_Rotation: {x: 0, y: -0, z: -0.948683, w: 0.31622872}
+    m_Length: 9.187746
+    m_ParentId: 2
+    m_Color:
+      serializedVersion: 2
+      rgba: 4278223103
+  - m_Name: left-weapon
+    m_Guid: 14c57cbf45596468c9a022aa18bdadc2
+    m_Position: {x: 9.187752, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 0, z: 0.9893883, w: 0.14529604}
+    m_Length: 2.8988018
+    m_ParentId: 6
+    m_Color:
+      serializedVersion: 2
+      rgba: 4278255488
+  - m_Name: right-weapon
+    m_Guid: 46ff103de48f24f67bd129a5c7fd3801
+    m_Position: {x: 9.40155, y: 0.0000076293945, z: 0}
+    m_Rotation: {x: 0, y: 0, z: -0.98429275, w: 0.17654443}
+    m_Length: 20.957508
+    m_ParentId: 5
+    m_Color:
+      serializedVersion: 2
+      rgba: 4286643968
+  - m_Name: right-leg
+    m_Guid: 367eb71c7f8c14dfaa8508c98d1ec718
+    m_Position: {x: 0.37327576, y: 2.3096695, z: 0}
+    m_Rotation: {x: 0, y: -0, z: 0.99362236, w: 0.11275919}
+    m_Length: 7.600503
+    m_ParentId: 0
+    m_Color:
+      serializedVersion: 2
+      rgba: 4294934528
+  - m_Name: left-leg
+    m_Guid: e4ec02fdf118e414980565c5e74b26c8
+    m_Position: {x: 1.0206604, y: -3.4469833, z: 0}
+    m_Rotation: {x: 0, y: -0, z: -0.98789203, w: 0.15514308}
+    m_Length: 7.591912
+    m_ParentId: 0
+    m_Color:
+      serializedVersion: 2
+      rgba: 4294901888
+  - m_Name: cape
+    m_Guid: e63dcec13d7df4da38083874077f2db0
+    m_Position: {x: 1.7321014, y: 2.3848114, z: 0}
+    m_Rotation: {x: 0, y: -0, z: -0.999815, w: 0.019234382}
+    m_Length: 14.88209
+    m_ParentId: 2
+    m_Color:
+      serializedVersion: 2
+      rgba: 4286578943
+  - m_Name: hair-back
+    m_Guid: 36e76a4cf0d454ecd8fc8ef15b09ffce
+    m_Position: {x: 6.8368835, y: 1.9090424, z: 0}
+    m_Rotation: {x: 0, y: -0, z: 0.991729, w: 0.1283496}
+    m_Length: 6.5526958
+    m_ParentId: 4
+    m_Color:
+      serializedVersion: 2
+      rgba: 4278255615
