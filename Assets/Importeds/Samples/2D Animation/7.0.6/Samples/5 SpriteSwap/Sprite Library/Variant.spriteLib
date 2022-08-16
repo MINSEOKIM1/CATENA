@@ -33,7 +33,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 6840234404796783302, guid: 8f519a0f7487d41cebc10ff177ee1436, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 3
+    m_EntryOverrideCount: 0
   - m_Name: eye R
     m_Hash: 0
     m_CategoryList: []
@@ -49,7 +49,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 1095283798790308963, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 2
+    m_EntryOverrideCount: 0
   - m_Name: eye L
     m_Hash: 0
     m_CategoryList: []
@@ -65,7 +65,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: -3074349410140533425, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 2
+    m_EntryOverrideCount: 0
   - m_Name: arm L
     m_Hash: 0
     m_CategoryList: []
@@ -76,7 +76,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 4077182761468681617, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: arm R
     m_Hash: 0
     m_CategoryList: []
@@ -87,7 +87,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: -7581268972857309878, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: coat back
     m_Hash: 0
     m_CategoryList: []
@@ -98,7 +98,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 2721980087723858752, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: coat front
     m_Hash: 0
     m_CategoryList: []
@@ -109,7 +109,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 3507540236483848128, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: hair back
     m_Hash: 0
     m_CategoryList: []
@@ -120,7 +120,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 5772404362284511076, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: hair front
     m_Hash: 0
     m_CategoryList: []
@@ -131,7 +131,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: -7973410689547447357, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: hand L bottom
     m_Hash: 0
     m_CategoryList: []
@@ -142,7 +142,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 7922768469880055815, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: hand R top
     m_Hash: 0
     m_CategoryList: []
@@ -153,7 +153,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 4547335400340988563, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: head
     m_Hash: 0
     m_CategoryList: []
@@ -164,7 +164,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 3544690015433047935, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: leg L
     m_Hash: 0
     m_CategoryList: []
@@ -175,7 +175,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: -8395654119544890380, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: leg R
     m_Hash: 0
     m_CategoryList: []
@@ -186,7 +186,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 8707367593002372109, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: neck
     m_Hash: 0
     m_CategoryList: []
@@ -197,7 +197,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: -7053215721309747142, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: neck element
     m_Hash: 0
     m_CategoryList: []
@@ -208,7 +208,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 926635602718250240, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: shoulder plate L
     m_Hash: 0
     m_CategoryList: []
@@ -219,7 +219,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 4054875673650391415, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: shoulder plate R
     m_Hash: 0
     m_CategoryList: []
@@ -230,7 +230,7 @@ MonoBehaviour:
       m_FromMain: 1
       m_SpriteOverride: {fileID: 4303385701683481549, guid: 6d8d9c573c01747b19625c8ab9dee609, type: 3}
     m_FromMain: 1
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 0
   - m_Name: torso
     m_Hash: 660585605
     m_CategoryList: []
