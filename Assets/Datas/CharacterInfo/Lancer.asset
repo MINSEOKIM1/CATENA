@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
+  m_Name: Lancer
+  m_EditorClassIdentifier: 
+  characterSLA: {fileID: 7108339969198208228, guid: a1510a660b27f48b59ddc2e6d535f8f6, type: 3}
+  characterName: Lancer
+  characterImage: {fileID: 0}
+  hp: 100
+  mp: 60
+  speed: 6
+  jumpPower: 11
+  stats:
+  - 90
+  - 20
+  - 40
+  - 0
+  - 150
+  - 0
+  growthHp: 30
+  growthMp: 10
+  growthSpeed: 0
+  growthJumpPower: 0
+  growthStats:
+  - 8
+  - 0
+  - 4
+  - 0
+  - 0
+  - 0
+  skills:
+  - {fileID: 11400000, guid: 346883b5ca3104399b750afa6d04c967, type: 2}
+  - {fileID: 11400000, guid: 84c2bbf161808423b9fc60c55d4ba5a6, type: 2}
+  - {fileID: 11400000, guid: abbe822abbcce4e2ebfc8f86a21a78ad, type: 2}
+  - {fileID: 11400000, guid: 463d182b854534d10aa2bc98930ee1e0, type: 2}
+  skillImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  skillNums: 010000000c0000000d0000000e000000
+  skillCooldowns:
+  - 0
+  - 0
+  - 0

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  characterSLA: {fileID: 7108339969198208228, guid: 40eae45b36a63481c8c4bcc84808b812, type: 3}
+  characterName: Knight
+  characterImage: {fileID: 0}
+  hp: 100
+  mp: 50
+  speed: 6
+  jumpPower: 10
+  stats:
+  - 80
+  - 20
+  - 50
+  - 0
+  - 120
+  - 0
+  growthHp: 30
+  growthMp: 10
+  growthSpeed: 0
+  growthJumpPower: 0
+  growthStats:
+  - 6
+  - 0
+  - 5
+  - 0
+  - 0
+  - 0
+  skills:
+  - {fileID: 11400000, guid: 96c657726eadb4f17a79d55eb8b17233, type: 2}
+  - {fileID: 11400000, guid: a2aa5ae97b49f49259fccbfb18a5651f, type: 2}
+  - {fileID: 11400000, guid: 836ad0d7f43994905bcaabacf6471bdf, type: 2}
+  - {fileID: 11400000, guid: 4aee9103db19745b0822e3e74c2918c4, type: 2}
+  skillImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  skillNums: 00000000060000000700000008000000
+  skillCooldowns:
+  - 0
+  - 0
+  - 0

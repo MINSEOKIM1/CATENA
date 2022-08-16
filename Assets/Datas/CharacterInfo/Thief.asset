@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
+  m_Name: Thief
+  m_EditorClassIdentifier: 
+  characterSLA: {fileID: 7108339969198208228, guid: 438d4f1e06622418882588a1e52c7e2d, type: 3}
+  characterName: Thief
+  characterImage: {fileID: 0}
+  hp: 80
+  mp: 80
+  speed: 7
+  jumpPower: 13
+  stats:
+  - 100
+  - 0
+  - 10
+  - 0
+  - 200
+  - 0
+  growthHp: 20
+  growthMp: 20
+  growthSpeed: 0.1
+  growthJumpPower: 0.1
+  growthStats:
+  - 10
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  skills:
+  - {fileID: 11400000, guid: 7fe9f38ec17864f9b8a23fe50527a90b, type: 2}
+  - {fileID: 11400000, guid: 3ec4c501c69c14a40ba0411d5b99a7ad, type: 2}
+  - {fileID: 11400000, guid: 9f088d1a2aff3458894abe9a2dc6df95, type: 2}
+  - {fileID: 11400000, guid: 7d33bd1d7692e40a9acb3a337c37280e, type: 2}
+  skillImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  skillNums: 030000000f0000001000000011000000
+  skillCooldowns:
+  - 0
+  - 0
+  - 0

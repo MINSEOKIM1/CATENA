@@ -8,37 +8,177 @@ public class CharacterBehavior : MonoBehaviour
 {
     private Vector2 _moving;
     
-    private float _attackTime;
+    public float attackTime;
+    public bool canMove =  false;
 
     private Rigidbody2D _rigidbody2D;
-    /*
-    private ExpeditionManaging _expeditionManaging;
-    */
+    
+    private ExpeditionManager _expeditionManager;
     private CharacterDataProcessor _characterDataProcessor;
     private CharacterSkills _characterSkills;
     
     private Animator _animator;
+
+    public int characterState;
+
+    public int characterNum;
     
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
+
+        _expeditionManager = transform.parent.GetComponent<ExpeditionManager>();
+        _characterDataProcessor = GetComponent<CharacterDataProcessor>();
+        _characterSkills = GetComponent<CharacterSkills>();
     }
 
     private void FixedUpdate()
     {
-        transform.Translate(new Vector3(_moving.x, 0, 0) * (_characterDataProcessor.speed * Time.deltaTime));
+        if (attackTime > 0)
+        {
+            attackTime -= Time.deltaTime;
+        }
+        else
+        {
+            attackTime = 0;
+            if (_expeditionManager.currentPlayerNum != characterNum)
+            {
+                _moving = Vector2.zero;
+                gameObject.SetActive(false);
+            }
+        }
+
+        if (_moving.x != 0)
+        {
+            _animator.SetBool("isMoving", true);
+            if ((_moving.x < 0 && transform.localScale.x > 0) || (_moving.x > 0 && transform.localScale.x < 0))
+            {
+                if (attackTime == 0)
+                {
+                    transform.localScale =
+                        new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                }
+            }
+
+        }
+        else
+        {
+            _animator.SetBool("isMoving", false);
+        }
+
+        if (_animator.GetBool("onAir"))
+        {
+            if (_rigidbody2D.velocity.y < 0) _animator.SetBool("isFalling", true);
+            else _animator.SetBool("isFalling", false);
+        }
+        else
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, 1 << 6);
+            if (!hit) _animator.SetBool("onAir", true);
+        }
+
+        if (attackTime == 0 || canMove) 
+            transform.Translate(new Vector3(_moving.x, 0, 0) * (_characterDataProcessor.speed * Time.deltaTime));
     }
 
     public void OnMovement(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayer == gameObject)
         _moving = value.ReadValue<Vector2>();
     }
 
     public void OnJump(InputAction.CallbackContext value)
     {
-        if (value.started)
+        if (attackTime == 0 && value.started && !_animator.GetBool("onAir"))
         {
             _rigidbody2D.AddForce(Vector2.up * _characterDataProcessor.jumpPower, ForceMode2D.Impulse);
+            _animator.SetBool("isFalling", false);
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext value)
+    {
+        if (attackTime == 0 && value.started)
+        {
+            _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[0].skillNum);
+        }
+
+        if (_characterDataProcessor.CharacterData.characterInfo.skillNums[0] == 2)
+        {
+            if (attackTime > 0 && value.canceled && _animator.GetInteger("attackNum") == 0)
+            {
+                _characterSkills.Skill(2);
+            }
+        }
+    }
+
+    public void SetAttackTime(float time)
+    {
+        attackTime = time;
+    }
+    
+    public void OnSkill1(InputAction.CallbackContext value)
+    {
+        if (attackTime == 0 && value.started)
+        {
+            _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[1].skillNum);
+        }
+    }
+    
+    public void OnSkill2(InputAction.CallbackContext value)
+    {
+        if (attackTime == 0 && value.started)
+        {
+            _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[2].skillNum);
+        }
+    }
+    
+    public void OnSkill3(InputAction.CallbackContext value)
+    {
+        if (attackTime == 0 && value.started)
+        {
+            _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[3].skillNum);
+        }
+    }
+
+    public void OnAddSkill1(InputAction.CallbackContext value)
+    {
+        if (attackTime == 0 && value.started)
+        {
+            // _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skillNums[3]);
+        }
+    }
+    
+    public void OnAddSkill2(InputAction.CallbackContext value)
+    {
+        if (attackTime == 0 && value.started)
+        {
+            // _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skillNums[3]);
+        }
+    }
+
+    IEnumerator TakeHit(float damage, Vector2 knockback)
+    {
+        _animator.SetTrigger("hit");
+        _rigidbody2D.AddForce(knockback, ForceMode2D.Impulse);
+        yield return new WaitForFixedUpdate();
+        attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+    
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            if (col.contacts[0].normal.y > 0.9) _animator.SetBool("onAir", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            _animator.SetBool("onAir", true);
         }
     }
 }

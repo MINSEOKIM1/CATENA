@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public AudioManager AudioManager { get; private set; }
+    public DataManager DataManager { get; private set; }
     /*
     public GameStateManager GameStateManager { get; private set; }
     public UIManager UIManager { get; private set; }
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         
         AudioManager = GetComponentInChildren<AudioManager>();
-        
+        DataManager = GetComponentInChildren<DataManager>();
+
         /*
          * GameStateManager = GetComponentInChildren<GameStateManager>();
          * UIManager = GetComponentInChildren<UIManager>();

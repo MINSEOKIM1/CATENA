@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
+  m_Name: Berserker
+  m_EditorClassIdentifier: 
+  characterSLA: {fileID: 7108339969198208228, guid: 235ec3191bd0640fa93b60e87bf26e34, type: 3}
+  characterName: Berserker
+  characterImage: {fileID: 0}
+  hp: 90
+  mp: 50
+  speed: 7
+  jumpPower: 12
+  stats:
+  - 100
+  - 0
+  - 30
+  - 0
+  - 150
+  - 0
+  growthHp: 30
+  growthMp: 10
+  growthSpeed: 0
+  growthJumpPower: 0
+  growthStats:
+  - 9
+  - 0
+  - 3
+  - 0
+  - 0
+  - 0
+  skills:
+  - {fileID: 11400000, guid: 96c657726eadb4f17a79d55eb8b17233, type: 2}
+  - {fileID: 11400000, guid: c79b1e98a4f1d4429843b4158528812a, type: 2}
+  - {fileID: 11400000, guid: 98caf5a686ffa41be8d2b4338993b2a8, type: 2}
+  - {fileID: 11400000, guid: c339dbc2d21f849c1adbc648cea5665c, type: 2}
+  skillImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  skillNums: 00000000090000000a0000000b000000
+  skillCooldowns:
+  - 0
+  - 0
+  - 0
