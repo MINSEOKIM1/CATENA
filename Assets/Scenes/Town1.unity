@@ -1690,7 +1690,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785234, y: 1}
+    m_SensorSize: {x: 1.7781351, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3232,6 +3232,7 @@ GameObject:
   - component: {fileID: 1594083487}
   - component: {fileID: 1594083486}
   - component: {fileID: 1594083488}
+  - component: {fileID: 1594083489}
   m_Layer: 0
   m_Name: Goblin_Graphic
   m_TagString: Untagged
@@ -3326,6 +3327,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1594083489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594083485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b70a5932bd5f4a038a7a69c1255c037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxOffset: {x: 0, y: 0}
+  boxSize: {x: 0, y: 0}
+  damage: 0
+  airborne: {x: 0, y: 0}
 --- !u!1 &1626695024
 GameObject:
   m_ObjectHideFlags: 3
