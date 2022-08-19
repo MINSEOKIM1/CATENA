@@ -53,7 +53,7 @@ public class CharacterBehavior : MonoBehaviour
             attackTime = 0;
             if (_expeditionManager.currentPlayerNum != characterNum)
             {
-                Invoke("GoDisable", 1f);
+                Invoke("GoDisable", 0.2f);
             }
         }
 
@@ -65,6 +65,8 @@ public class CharacterBehavior : MonoBehaviour
         {
             invincibleTime = 0;
         }
+
+        if (hitAir) attackTime = 0;
 
         if (_moving.x != 0 && !hitAir)
         {

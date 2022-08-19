@@ -376,6 +376,7 @@ public class CharacterSkills : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
             _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+            _characterBehavior.invincibleTime = _animator.GetCurrentAnimatorStateInfo(0).length;
 
             yield return new WaitForSeconds(17 / 60f);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, 1 << 6);
@@ -406,6 +407,7 @@ public class CharacterSkills : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
             _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+            _characterBehavior.invincibleTime = _animator.GetCurrentAnimatorStateInfo(0).length;
             
             yield return new WaitForSeconds(23 / 60f);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, 1 << 6);
@@ -483,6 +485,7 @@ public class CharacterSkills : MonoBehaviour
 
         yield return new WaitForFixedUpdate();
         _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+        _characterBehavior.invincibleTime = _animator.GetCurrentAnimatorStateInfo(0).length;
 
         yield return new WaitForSeconds(34 / 60f);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, 
