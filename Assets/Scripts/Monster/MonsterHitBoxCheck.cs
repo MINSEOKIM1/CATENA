@@ -27,8 +27,14 @@ public class MonsterHitBoxCheck : MonoBehaviour
             if (item.tag == "Player")
             {
                 Debug.Log("Player Hit!! Damage : " + damage);
-                // item.gameObject.GetComponent<CharacterBehavior>().TakeHit(damage, airborne, stunTime);
-                // item.gameObject.GetComponent<TestMob>().TakeHit(damage, airborne, stunTime);
+                if (item.transform.position.x < transform.parent.position.x)
+                {
+                    StartCoroutine(item.gameObject.GetComponent<CharacterBehavior>().TakeHit(damage, new Vector2(-airborne.x, airborne.y)));
+                }
+                else
+                {
+                    StartCoroutine(item.gameObject.GetComponent<CharacterBehavior>().TakeHit(damage, airborne));
+                }
             }
         }
     }

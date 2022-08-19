@@ -128,7 +128,7 @@ public class CharacterSkills : MonoBehaviour
     private Vector2 CalculateKnockback(int num)
     {
         return new Vector2(
-            _characterDataProcessor.CharacterData.characterInfo.skills[num].airborne.x * transform.localScale.x,
+            _characterDataProcessor.CharacterData.characterInfo.skills[num].airborne.x,
             _characterDataProcessor.CharacterData.characterInfo.skills[num].airborne.y);
     }
 
@@ -285,6 +285,7 @@ public class CharacterSkills : MonoBehaviour
 
         yield return new WaitForFixedUpdate();
         _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+        _characterBehavior.invincibleTime = _animator.GetCurrentAnimatorStateInfo(0).length;
 
         yield return new WaitForSeconds(22 / 60f);
         _rigidbody.velocity = new Vector2(transform.localScale.x * 2, _rigidbody.velocity.y);
@@ -300,12 +301,13 @@ public class CharacterSkills : MonoBehaviour
         float damage = CalculateSkillDamage(2);
         AttackBoundaryCheck(new Vector2(0.8f, 0), new Vector2(16f, 4f),
             damage, 
-            _characterDataProcessor.CharacterData.characterInfo.skills[2].airborne,
+            CalculateKnockback(2),
             _characterDataProcessor.CharacterData.characterInfo.skills[2].stunTime);
 
 
         yield return new WaitForFixedUpdate();
         _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+        _characterBehavior.invincibleTime = _animator.GetCurrentAnimatorStateInfo(0).length;
     }
     
     IEnumerator KnightSkill2() 
@@ -582,9 +584,12 @@ public class CharacterSkills : MonoBehaviour
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(
             (Vector2)transform.position,
             new Vector2(32f, 32f), 0);
+
+        
         for (int i = 0; i < collider2Ds.Length; i++)
         {
-            if (collider2Ds[i].tag == "Mob")
+            MonsterBehavior mb = collider2Ds[i].GetComponent<MonsterBehavior>();
+            if (collider2Ds[i].tag == "Mob" && !mb.isGrounded && mb.state == 3)
             {
                 _rigidbody.velocity = Vector2.zero;
                 skillNum = Random.Range(2, 5);

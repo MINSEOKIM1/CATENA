@@ -9,6 +9,7 @@ public class CharacterBehavior : MonoBehaviour
     private Vector2 _moving;
     
     public float attackTime;
+    public float invincibleTime;
     public bool canMove =  false;
 
     private Rigidbody2D _rigidbody2D;
@@ -16,6 +17,8 @@ public class CharacterBehavior : MonoBehaviour
     private ExpeditionManager _expeditionManager;
     private CharacterDataProcessor _characterDataProcessor;
     private CharacterSkills _characterSkills;
+
+    private bool hitAir;
     
     private Animator _animator;
 
@@ -33,6 +36,12 @@ public class CharacterBehavior : MonoBehaviour
         _characterSkills = GetComponent<CharacterSkills>();
     }
 
+    private void GoDisable()
+    {
+        _moving = Vector2.zero;
+        gameObject.SetActive(false);
+    }
+
     private void FixedUpdate()
     {
         if (attackTime > 0)
@@ -44,12 +53,20 @@ public class CharacterBehavior : MonoBehaviour
             attackTime = 0;
             if (_expeditionManager.currentPlayerNum != characterNum)
             {
-                _moving = Vector2.zero;
-                gameObject.SetActive(false);
+                Invoke("GoDisable", 1f);
             }
         }
 
-        if (_moving.x != 0)
+        if (invincibleTime > 0)
+        {
+            invincibleTime -= Time.deltaTime;
+        }
+        else
+        {
+            invincibleTime = 0;
+        }
+
+        if (_moving.x != 0 && !hitAir)
         {
             _animator.SetBool("isMoving", true);
             if ((_moving.x < 0 && transform.localScale.x > 0) || (_moving.x > 0 && transform.localScale.x < 0))
@@ -78,18 +95,20 @@ public class CharacterBehavior : MonoBehaviour
             if (!hit) _animator.SetBool("onAir", true);
         }
 
-        if (attackTime == 0 || canMove) 
+        if ((attackTime == 0 || canMove) && !hitAir) 
             transform.Translate(new Vector3(_moving.x, 0, 0) * (_characterDataProcessor.speed * Time.deltaTime));
     }
 
     public void OnMovement(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum) return;
         if (_expeditionManager.currentPlayer == gameObject)
         _moving = value.ReadValue<Vector2>();
     }
 
     public void OnJump(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum) return;
         if (attackTime == 0 && value.started && !_animator.GetBool("onAir"))
         {
             _rigidbody2D.AddForce(Vector2.up * _characterDataProcessor.jumpPower, ForceMode2D.Impulse);
@@ -99,6 +118,7 @@ public class CharacterBehavior : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum || hitAir) return;
         if (attackTime == 0 && value.started)
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[0].skillNum);
@@ -120,6 +140,7 @@ public class CharacterBehavior : MonoBehaviour
     
     public void OnSkill1(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
         if (attackTime == 0 && value.started)
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[1].skillNum);
@@ -128,6 +149,7 @@ public class CharacterBehavior : MonoBehaviour
     
     public void OnSkill2(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
         if (attackTime == 0 && value.started)
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[2].skillNum);
@@ -136,6 +158,7 @@ public class CharacterBehavior : MonoBehaviour
     
     public void OnSkill3(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
         if (attackTime == 0 && value.started)
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[3].skillNum);
@@ -144,6 +167,7 @@ public class CharacterBehavior : MonoBehaviour
 
     public void OnAddSkill1(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
         if (attackTime == 0 && value.started)
         {
             // _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skillNums[3]);
@@ -152,25 +176,34 @@ public class CharacterBehavior : MonoBehaviour
     
     public void OnAddSkill2(InputAction.CallbackContext value)
     {
+        if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
         if (attackTime == 0 && value.started)
         {
             // _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skillNums[3]);
         }
     }
 
-    IEnumerator TakeHit(float damage, Vector2 knockback)
+    public IEnumerator TakeHit(float damage, Vector2 knockback)
     {
-        _animator.SetTrigger("hit");
-        _rigidbody2D.AddForce(knockback, ForceMode2D.Impulse);
-        yield return new WaitForFixedUpdate();
-        attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+
+        if (invincibleTime == 0)
+        {
+            _animator.SetTrigger("hit");
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.AddForce(knockback, ForceMode2D.Impulse);
+            attackTime = 1f;
+            yield return new WaitForFixedUpdate();
+            attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+            hitAir = true;
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Ground")
+        if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Mob")
         {
             if (col.contacts[0].normal.y > 0.9) _animator.SetBool("onAir", false);
+            hitAir = false;
         }
     }
 

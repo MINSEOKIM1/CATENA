@@ -2,30 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class MonsterBehavior : MonoBehaviour
 {
    public float turnTime;
    
-   public float _curturnTime;
-   public float _attackTime;
+   public float curturnTime;
+   public float attackTime;
 
    public float _stun;
 
    public Vector2 boxOffset, attackBoundary;
 
    public bool isGrounded;
-   private int _state;
+   public int state;
    /*
     * 0 : idle
     * 1 : walk - left
     * 2 : walk - right
     * 3 : hit
+    * 4 : attack
     */
 
    private MonsterDataProcessor _monsterDataProcessor;
-   private MonsterHitBoxCheck _monsterHitBoxCheck;
+   private MonsterSkills _monsterSkills;
    private Animator _animator;
    private Rigidbody2D _rigidbody2D;
    
@@ -38,7 +40,8 @@ public class MonsterBehavior : MonoBehaviour
    private void Start()
    {
       _monsterDataProcessor = GetComponent<MonsterDataProcessor>();
-      _monsterHitBoxCheck = GetComponentInChildren<MonsterHitBoxCheck>();
+      _monsterSkills = GetComponent<MonsterSkills>();
+      
       _rigidbody2D = GetComponent<Rigidbody2D>();
       _animator = GetComponentInChildren<Animator>();
    }
@@ -46,9 +49,9 @@ public class MonsterBehavior : MonoBehaviour
    private void FixedUpdate()
    {
       if (_monsterDataProcessor.hp <= 0) return;
-      if (_attackTime > 0)
+      if (attackTime > 0 && _stun <= 0)
       {
-         _attackTime -= Time.deltaTime;
+         attackTime -= Time.deltaTime;
       }
 
       if (_stun > 0) 
@@ -56,24 +59,49 @@ public class MonsterBehavior : MonoBehaviour
          _stun -= Time.deltaTime;
       }
    
-      _curturnTime -= Time.deltaTime;
+      curturnTime -= Time.deltaTime;
 
-      if (_stun > 0 || _attackTime > 0)
+      if (_stun > 0 || attackTime > 0)
       {
-         _curturnTime = 0;
+         curturnTime = 0;
          return;
       }
 
-      if (_state == 3 && !isGrounded) return;
+      if (state == 3 && !isGrounded) return;
 
-      if (_curturnTime <= 0)
+      if (state < 3)
       {
-         Debug.Log("!");
-         _curturnTime = turnTime;
-         _state = Random.Range(0, 3);
+         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(
+            (Vector2)transform.position + boxOffset,
+            attackBoundary, 0);
+
+         foreach (var i in collider2Ds)
+         {
+            if (i.tag == "Player")
+            {
+               _monsterSkills.Skill(0);
+               if (i.transform.position.x < transform.position.x)
+               {
+                  transform.localScale = new Vector3(-1, 1, 1);
+               }
+               else
+               {
+                  transform.localScale = new Vector3(1, 1, 1);
+               }
+               return;
+            }
+         }
       }
 
-      _animator.SetInteger("state", _state);
+
+      if (curturnTime <= 0)
+      {
+         Debug.Log("!");
+         curturnTime = turnTime;
+         state = Random.Range(0, 3);
+      }
+
+      _animator.SetInteger("state", state);
 
       RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(transform.localScale.x, 0, 0),
          Vector2.down, 3, 1 << 6);
@@ -82,21 +110,21 @@ public class MonsterBehavior : MonoBehaviour
       if (!hit)
       {
          bool did = false;
-         if (_state == 1)
+         if (state == 1)
          {
-            _state = 2;
+            state = 2;
             did = true;
          }
-         if (_state == 2 && !did) _state = 1;
+         if (state == 2 && !did) state = 1;
       }
 
-      if (_attackTime > 0) return;
-      if (_state == 1)
+      if (attackTime > 0) return;
+      if (state == 1)
       {
          transform.Translate(Vector3.left * (_monsterDataProcessor.monsterInfo.speed * Time.deltaTime));
          transform.localScale = new Vector3(-1, 1, 1);
       } 
-      if (_state == 2)
+      if (state == 2)
       {
          transform.Translate(Vector3.right * (_monsterDataProcessor.monsterInfo.speed * Time.deltaTime));
          transform.localScale = new Vector3(1, 1, 1);
@@ -107,10 +135,11 @@ public class MonsterBehavior : MonoBehaviour
    {
       _monsterDataProcessor.hp -= damage * (100 / (100 + _monsterDataProcessor.monsterInfo.stats[1]));
       _rigidbody2D.velocity = Vector2.zero;
+      
       _rigidbody2D.AddForce(airborne, ForceMode2D.Impulse);
       
-      _stun = stunTime;
-      _curturnTime = 0;
+      if (stunTime > _stun) _stun = stunTime;
+      curturnTime = 0;
 
       StartCoroutine(HitAnimation());
    }
@@ -119,8 +148,8 @@ public class MonsterBehavior : MonoBehaviour
    {
       _animator.SetTrigger("hit");
       yield return new WaitForFixedUpdate();
-      _attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
-      _state = 3;
+      attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+      state = 3;
       _animator.SetInteger("state", 3);
    }
 

@@ -26,3 +26,5 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  airborne: {x: 9, y: 6}
+  stunTime: 5
