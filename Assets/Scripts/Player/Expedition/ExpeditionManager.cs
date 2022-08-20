@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -48,6 +49,26 @@ public class ExpeditionManager : MonoBehaviour
         currentPlayer.SetActive(true);
 
         cine.Follow = currentPlayer.transform;
+    }
+
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (CooldownTimes[i, j] > 0)
+                {
+                    CooldownTimes[i, j] -= Time.deltaTime;
+                    if (CooldownTimes[i, j] <= 0)
+                    {
+                        CooldownTimes[i, j] = 0;
+                    }
+                }
+            }
+        }
+
+        extraAd = 0; extraAp = 0; extraDef = 0; extraAvd = 0;
     }
 
     public void ChangeCharacter(InputAction.CallbackContext value)

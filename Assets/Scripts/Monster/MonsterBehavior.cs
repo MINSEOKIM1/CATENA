@@ -23,6 +23,8 @@ public class MonsterBehavior : MonoBehaviour
 
    public bool isGrounded;
    public int state;
+
+   private bool _isDead;
    /*
     * 0 : idle
     * 1 : walk - left
@@ -53,7 +55,18 @@ public class MonsterBehavior : MonoBehaviour
 
    private void FixedUpdate()
    {
-      if (_monsterDataProcessor.hp <= 0) return;
+      if (_monsterDataProcessor.hp <= 0)
+      {
+         if (!_isDead)
+         {
+            _isDead = true;
+            _animator.SetTrigger("dead");
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            _rigidbody2D.gravityScale = 0;
+            Invoke("Delete", 5f);
+         }
+         return;
+      }
       if (attackTime > 0 && _stun <= 0)
       {
          attackTime -= Time.deltaTime;
@@ -138,6 +151,7 @@ public class MonsterBehavior : MonoBehaviour
 
    public void TakeHit(float damage, Vector2 airborne, float stunTime)
    {
+      if (_isDead) return;
       _monsterDataProcessor.hp -= damage * (100 / (100 + _monsterDataProcessor.monsterInfo.stats[1]));
       _rigidbody2D.velocity = Vector2.zero;
       
@@ -177,5 +191,10 @@ public class MonsterBehavior : MonoBehaviour
       {
          isGrounded = false;
       }
+   }
+
+   void Delete()
+   {
+      Destroy(gameObject);
    }
 }
