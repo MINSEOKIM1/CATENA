@@ -16,6 +16,8 @@ public class CharacterInfoUI : MonoBehaviour
 
     public SkillSlot[] skillSlots;
 
+    public int k;
+
     public void SetInfos(CharacterDataProcessor cdp, int n, ExpeditionManager em)
     {
         characterDataProcessor = cdp;
@@ -31,6 +33,12 @@ public class CharacterInfoUI : MonoBehaviour
             skillSlots[i].SetInfos(n, i, expeditionManager, characterDataProcessor);
         }
     }
+
+    private void Start()
+    {
+        GameObject.FindWithTag("GameManager").GetComponentInChildren<UIManager>().characterInfoUI[k] = this;
+    }
+
     private void FixedUpdate()
     {
         if (characterDataProcessor != null)

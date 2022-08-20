@@ -15,7 +15,7 @@ MonoBehaviour:
   characterNum: 4
   characterSLA: {fileID: 7108339969198208228, guid: 0ee1d7e08ea044a95964ebf41aeec8e5, type: 3}
   characterName: Gunslinger
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 21300000, guid: 4a63afd979cdd42d1bb994550e518cba, type: 3}
   hp: 85
   mp: 60
   speed: 7

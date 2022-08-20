@@ -15,7 +15,7 @@ MonoBehaviour:
   characterNum: 3
   characterSLA: {fileID: 7108339969198208228, guid: fae37db6f2f8c49b2bc3f1517525d92a, type: 3}
   characterName: Ranger
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 21300000, guid: 69d0dd651ab38406ca5389fe3ca5e03d, type: 3}
   hp: 80
   mp: 70
   speed: 8

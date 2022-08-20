@@ -15,7 +15,7 @@ MonoBehaviour:
   characterNum: 0
   characterSLA: {fileID: 7108339969198208228, guid: eae547861cb4545878ae65a19a3b4f5e, type: 3}
   characterName: Assassin
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 21300000, guid: 70f6044aeaa6746469341b1154363858, type: 3}
   hp: 80
   mp: 80
   speed: 7

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: 
+  characterNum: 0
   characterSLA: {fileID: 7108339969198208228, guid: 40eae45b36a63481c8c4bcc84808b812, type: 3}
   characterName: Knight
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 21300000, guid: 1ca78e3990ca842f3ad224ebf669964c, type: 3}
   hp: 100
   mp: 50
   speed: 6

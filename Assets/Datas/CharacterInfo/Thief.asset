@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Thief
   m_EditorClassIdentifier: 
+  characterNum: 0
   characterSLA: {fileID: 7108339969198208228, guid: 438d4f1e06622418882588a1e52c7e2d, type: 3}
   characterName: Thief
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 21300000, guid: 0bfb226a5e74c4b6a9e20fcd7c1a207b, type: 3}
   hp: 80
   mp: 80
   speed: 7
