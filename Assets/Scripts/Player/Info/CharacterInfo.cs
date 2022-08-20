@@ -8,6 +8,19 @@ using UnityEngine.U2D.Animation;
 // 기본적인 스탯들... 아이템의 효과는 적용되지 않음.
 public class CharacterInfo : ScriptableObject
 {
+    public int characterNum;
+    /*
+     * 0 : Knight
+     * 1 : Berserker
+     * 2 : Lancer
+     * 3 : Ranger
+     * 4 : Gunslinger
+     * 5 : Wizard
+     * 6 : Priest
+     * 7 : Thief
+     * 8 : Assassin
+     */
+    
     public SpriteLibraryAsset characterSLA;
     public String characterName;
     public Sprite characterImage;

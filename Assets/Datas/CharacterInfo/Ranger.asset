@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Ranger
   m_EditorClassIdentifier: 
+  characterNum: 3
   characterSLA: {fileID: 7108339969198208228, guid: fae37db6f2f8c49b2bc3f1517525d92a, type: 3}
   characterName: Ranger
   characterImage: {fileID: 0}
@@ -37,6 +38,11 @@ MonoBehaviour:
   - 2
   - 5
   - 0
+  skills:
+  - {fileID: 11400000, guid: ef8a84f7938a746e9953538277dd31ce, type: 2}
+  - {fileID: 11400000, guid: eb6e06221822d4cd0b841ac09b13fa15, type: 2}
+  - {fileID: 11400000, guid: df4d5483ae46c43f18eb77cacad7d643, type: 2}
+  - {fileID: 11400000, guid: 88522ae803e33497ba715d8358dda78f, type: 2}
   skillImages:
   - {fileID: 0}
   - {fileID: 0}

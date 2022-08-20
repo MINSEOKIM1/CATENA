@@ -8,6 +8,11 @@ using Random = UnityEngine.Random;
 public class MonsterBehavior : MonoBehaviour
 {
    public float turnTime;
+
+   public GameObject damageText;
+   public GameObject canvas;
+
+   public float damageTextOffset;
    
    public float curturnTime;
    public float attackTime;
@@ -140,6 +145,11 @@ public class MonsterBehavior : MonoBehaviour
       
       if (stunTime > _stun) _stun = stunTime;
       curturnTime = 0;
+      
+      var text = Instantiate(damageText, canvas.transform);
+      text.GetComponent<DamageText>()
+         .SetDamage(damage, transform.position + Vector3.up * damageTextOffset * Random.Range(1, 1.2f));
+      text.transform.SetParent(canvas.transform);
 
       StartCoroutine(HitAnimation());
    }

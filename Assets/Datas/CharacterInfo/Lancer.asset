@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Lancer
   m_EditorClassIdentifier: 
+  characterNum: 2
   characterSLA: {fileID: 7108339969198208228, guid: a1510a660b27f48b59ddc2e6d535f8f6, type: 3}
   characterName: Lancer
   characterImage: {fileID: 0}

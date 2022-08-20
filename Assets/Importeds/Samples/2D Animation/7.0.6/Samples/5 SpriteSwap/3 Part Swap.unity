@@ -936,7 +936,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193414727}
-  m_LocalRotation: {x: 0, y: 0, z: -0.12982772, w: 0.99153656}
+  m_LocalRotation: {x: 0, y: 0, z: -0.12969053, w: 0.99155456}
   m_LocalPosition: {x: 2.1453824, y: 0.000000007020838, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -946,7 +946,7 @@ Transform:
   - {fileID: 705508308}
   m_Father: {fileID: 1054372415}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -385.773}
 --- !u!1 &204172025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,7 +3446,7 @@ MonoBehaviour:
   - {fileID: 1622880316}
   - {fileID: 736503466}
   m_Bounds:
-    m_Center: {x: -0.37839508, y: -1.673938, z: 0}
+    m_Center: {x: -0.37839472, y: -1.6739383, z: 0}
     m_Extent: {x: 1.0752623, y: 2.2952437, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -5735,8 +5735,8 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 675638135}
   m_Bounds:
-    m_Center: {x: -0.36991882, y: 1.6835355, z: 0}
-    m_Extent: {x: 2.6207998, y: 3.4599993, z: 0}
+    m_Center: {x: -0.36991882, y: 1.6835351, z: 0}
+    m_Extent: {x: 2.6208, y: 3.4599996, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -8467,7 +8467,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300006, guid: f147904358fc9c042beea56963e6b70a, type: 3}
+  m_Sprite: {fileID: 21300006, guid: cc7586140aa6bac4ab484e8dc1a41a4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8495,8 +8495,8 @@ MonoBehaviour:
   - {fileID: 1054372415}
   - {fileID: 193414728}
   m_Bounds:
-    m_Center: {x: -0.29758573, y: 1.6747978, z: 0}
-    m_Extent: {x: 2.6801693, y: 2.5910065, z: 0}
+    m_Center: {x: -0.2978549, y: 1.6747615, z: 0}
+    m_Extent: {x: 2.68012, y: 2.5909703, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -8514,7 +8514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 1.6059022e+36
   m_labelHash: 5.878249e-16
-  m_SpriteKey: 0.0000012610402
+  m_SpriteKey: -4.1817258e+27
 --- !u!1 &1990969887
 GameObject:
   m_ObjectHideFlags: 0
@@ -8620,8 +8620,8 @@ MonoBehaviour:
   - {fileID: 1493027429}
   - {fileID: 2136883841}
   m_Bounds:
-    m_Center: {x: 0.6753891, y: -1.5361695, z: 0}
-    m_Extent: {x: 1.0704945, y: 2.0508425, z: 0}
+    m_Center: {x: 0.6753893, y: -1.5361702, z: 0}
+    m_Extent: {x: 1.0704947, y: 2.0508428, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872379fe695c141a0a546dfe42934bd7, type: 3}
+  m_Name: Gunslinger_skill0
+  m_EditorClassIdentifier: 
+  skillName: "\uAD00\uD1B5 \uD654\uC0B4"
+  description: "\uAC15\uB825\uD55C \uAD00\uD1B5 \uD654\uC0B4\uC744 \uC3F4\uC11C \uC801\uB4E4\uC744
+    \uAFF0\uB6AB\uB294\uB2E4."
+  skillImage: {fileID: 0}
+  coolDownTime: 0
+  skillNum: 24
+  defaultDamage: 200
+  statCoefficient:
+  - 2
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  airborne: {x: 0, y: 0}
+  stunTime: 2

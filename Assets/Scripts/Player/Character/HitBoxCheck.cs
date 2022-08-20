@@ -22,7 +22,7 @@ public class HitBoxCheck : MonoBehaviour
 
     private void Start()
     {
-        cine = transform.parent.parent.GetComponent<ExpeditionManager>().cine;
+        // cine = transform.parent.parent.GetComponent<ExpeditionManager>().cine;
     }
 
     public void AttackBoundaryCheck()

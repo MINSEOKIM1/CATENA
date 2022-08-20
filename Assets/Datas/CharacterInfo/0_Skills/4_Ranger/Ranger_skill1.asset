@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872379fe695c141a0a546dfe42934bd7, type: 3}
+  m_Name: Ranger_skill1
+  m_EditorClassIdentifier: 
+  skillName: "\uBC31\uB364\uBE14\uB9C1\uC0F7"
+  description: "\uB4A4\uB85C \uC810\uD504\uD558\uBA70 \uC804\uBC29\uC758 \uC801\uB4E4\uC5D0\uAC8C
+    \uC5EC\uB7EC \uBC1C\uC758 \uD654\uC0B4\uC744 \uC3DC\uB2E4"
+  skillImage: {fileID: 0}
+  coolDownTime: 0
+  skillNum: 22
+  defaultDamage: 50
+  statCoefficient:
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  airborne: {x: 0, y: 0}
+  stunTime: 0

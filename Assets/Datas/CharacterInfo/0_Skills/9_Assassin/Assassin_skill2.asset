@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872379fe695c141a0a546dfe42934bd7, type: 3}
+  m_Name: Assassin_skill2
+  m_EditorClassIdentifier: 
+  skillName: "\uAE30\uC2B5"
+  description: "\uC801\uC758 \uB4A4\uB85C \uBE60\uB974\uAC8C \uC774\uB3D9\uD558\uC5EC
+    \uC801\uC744 \uBCA0\uACE0 \uAE30\uC808\uC2DC\uD0A8\uB2E4."
+  skillImage: {fileID: 0}
+  coolDownTime: 0
+  skillNum: 20
+  defaultDamage: 100
+  statCoefficient:
+  - 2
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  airborne: {x: 0, y: 0}
+  stunTime: 2

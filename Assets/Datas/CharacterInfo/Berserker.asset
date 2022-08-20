@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Berserker
   m_EditorClassIdentifier: 
+  characterNum: 1
   characterSLA: {fileID: 7108339969198208228, guid: 235ec3191bd0640fa93b60e87bf26e34, type: 3}
   characterName: Berserker
   characterImage: {fileID: 0}

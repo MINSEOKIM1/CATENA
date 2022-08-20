@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Gunslinger
   m_EditorClassIdentifier: 
+  characterNum: 4
   characterSLA: {fileID: 7108339969198208228, guid: 0ee1d7e08ea044a95964ebf41aeec8e5, type: 3}
   characterName: Gunslinger
   characterImage: {fileID: 0}
@@ -37,11 +38,16 @@ MonoBehaviour:
   - 2
   - 5
   - 0
+  skills:
+  - {fileID: 11400000, guid: 209105dd64a9f4803bcb3c15778f8c84, type: 2}
+  - {fileID: 11400000, guid: f2e88dd34ae0e4ff492f3fc3c23065aa, type: 2}
+  - {fileID: 11400000, guid: 417e7138c8eb84185a308006c82741b2, type: 2}
+  - {fileID: 11400000, guid: fbde345b947db43be9b1854a99505fba, type: 2}
   skillImages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  skillNums: 04000000000000000000000000000000
+  skillNums: 00000000000000000000000000000000
   skillCooldowns:
   - 0
   - 0

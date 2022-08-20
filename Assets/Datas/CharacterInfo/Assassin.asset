@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e3bff915bda430dad2eb6ced1fdc5b, type: 3}
   m_Name: Assassin
   m_EditorClassIdentifier: 
+  characterNum: 0
   characterSLA: {fileID: 7108339969198208228, guid: eae547861cb4545878ae65a19a3b4f5e, type: 3}
   characterName: Assassin
   characterImage: {fileID: 0}
@@ -37,7 +38,11 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: b9797b7bcf5b84466a944c4b56b7001a, type: 2}
+  - {fileID: 11400000, guid: f8deeed7bacd94bf8a5bd500a14b4579, type: 2}
+  - {fileID: 11400000, guid: 2dcc50a17ecb74e61b96700d5dcc4d81, type: 2}
+  - {fileID: 11400000, guid: 4e2528b1b62c04ec98afff3fe3a8d51f, type: 2}
   skillImages:
   - {fileID: 0}
   - {fileID: 0}

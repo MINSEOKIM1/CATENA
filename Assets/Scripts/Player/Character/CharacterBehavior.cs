@@ -11,6 +11,11 @@ public class CharacterBehavior : MonoBehaviour
     public float attackTime;
     public float invincibleTime;
     public bool canMove =  false;
+    
+    public GameObject damageText;
+    public GameObject canvas;
+    
+    public float damageTextOffset;
 
     private Rigidbody2D _rigidbody2D;
     
@@ -34,6 +39,8 @@ public class CharacterBehavior : MonoBehaviour
         _expeditionManager = transform.parent.GetComponent<ExpeditionManager>();
         _characterDataProcessor = GetComponent<CharacterDataProcessor>();
         _characterSkills = GetComponent<CharacterSkills>();
+        
+        canvas = GameObject.FindWithTag("Canvas");
     }
 
     private void GoDisable()
@@ -53,6 +60,7 @@ public class CharacterBehavior : MonoBehaviour
             attackTime = 0;
             if (_expeditionManager.currentPlayerNum != characterNum)
             {
+                invincibleTime = 1f;
                 Invoke("GoDisable", 0.2f);
             }
         }
@@ -187,13 +195,20 @@ public class CharacterBehavior : MonoBehaviour
 
     public IEnumerator TakeHit(float damage, Vector2 knockback)
     {
-
-        if (invincibleTime == 0)
+        if (_characterDataProcessor.CharacterData.characterInfo.characterNum == 2 && characterState == 1)
+        {
+            StartCoroutine(_characterSkills.LancerSkill1_counter());
+        }
+        else if (invincibleTime == 0)
         {
             _animator.SetTrigger("hit");
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.AddForce(knockback, ForceMode2D.Impulse);
             attackTime = 1f;
+            var text = Instantiate(damageText, canvas.transform);
+            text.GetComponent<DamageText>().SetDamage(damage, transform.position + Vector3.up * damageTextOffset);
+            text.transform.SetParent(canvas.transform);
+            
             yield return new WaitForFixedUpdate();
             attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
             hitAir = true;
