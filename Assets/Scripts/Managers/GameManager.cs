@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public AudioManager AudioManager { get; private set; }
     public DataManager DataManager { get; private set; }
+    public UIManager UIManager { get; private set; }
     /*
     public GameStateManager GameStateManager { get; private set; }
-    public UIManager UIManager { get; private set; }
+
     */
 
     private void Awake()
@@ -25,10 +26,10 @@ public class GameManager : MonoBehaviour
         
         AudioManager = GetComponentInChildren<AudioManager>();
         DataManager = GetComponentInChildren<DataManager>();
+        UIManager = GetComponentInChildren<UIManager>();
 
         /*
          * GameStateManager = GetComponentInChildren<GameStateManager>();
-         * UIManager = GetComponentInChildren<UIManager>();
          * 
          */
     }

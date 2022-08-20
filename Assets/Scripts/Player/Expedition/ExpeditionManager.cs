@@ -22,6 +22,8 @@ public class ExpeditionManager : MonoBehaviour
     public float[,] CooldownTimes;
     private void Start()
     {
+        GameManager.Instance.UIManager.expeditionManager = this;
+        GameManager.Instance.UIManager.characterDataProcessors = new CharacterDataProcessor[3];
         currentPlayerNum = 0;
         CooldownTimes = new float[5, 5];
         for (int i = 0; i < GameManager.Instance.DataManager.expeditionData.Count; i++)
@@ -39,6 +41,8 @@ public class ExpeditionManager : MonoBehaviour
             characterDataProcessors[i].SetCharacterData(GameManager.Instance.DataManager.expeditionData[i]);
             // characterDataProcessors[i].UpdateData();
 
+            GameManager.Instance.UIManager.characterDataProcessors[i] = characterDataProcessors[i];
+
             for (int j = 0; j < 3; j++)
             {
                 CooldownTimes[i, j] = 0;
@@ -47,6 +51,7 @@ public class ExpeditionManager : MonoBehaviour
 
         currentPlayer = characters[0];
         currentPlayer.SetActive(true);
+        GameManager.Instance.UIManager.SetCurrentCharacter(characterDataProcessors[0]);
 
         cine.Follow = currentPlayer.transform;
     }
@@ -55,6 +60,10 @@ public class ExpeditionManager : MonoBehaviour
     {
         for (int i = 0; i < characters.Count; i++)
         {
+            if (characterDataProcessors[i].hp < characterDataProcessors[i].maxHp)
+                characterDataProcessors[i].hp += Time.deltaTime;
+            if (characterDataProcessors[i].mp < characterDataProcessors[i].maxMp)
+                characterDataProcessors[i].mp += Time.deltaTime;
             for (int j = 0; j < 3; j++)
             {
                 if (CooldownTimes[i, j] > 0)
@@ -76,6 +85,7 @@ public class ExpeditionManager : MonoBehaviour
         if (value.started && (int)value.ReadValue<float>() != currentPlayerNum + 1 &&
             (int)value.ReadValue<float>() <= characters.Count)
         {
+            GameManager.Instance.UIManager.SetCurrentCharacter(characterDataProcessors[(int)value.ReadValue<float>() - 1]);
             Vector3 curPo = currentPlayer.transform.position;
             Vector2 velocity = characters[currentPlayerNum].GetComponent<Rigidbody2D>().velocity;
 

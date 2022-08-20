@@ -10,7 +10,12 @@ public class CharacterDataProcessor : MonoBehaviour
     public float hp, maxHp, mp, maxMp, speed, jumpPower;
     public float[] stats;
     public List<float> coolDownTimes;
-    
+
+    private void FixedUpdate()
+    {
+        hp = Mathf.Clamp(hp, 0, maxHp);
+        mp = Mathf.Clamp(mp, 0, maxMp);
+    }
 
     public void SetCharacterData(CharacterData cd)
     {

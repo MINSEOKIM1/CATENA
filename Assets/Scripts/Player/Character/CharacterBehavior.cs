@@ -107,6 +107,20 @@ public class CharacterBehavior : MonoBehaviour
 
         if ((attackTime == 0 || canMove) && !hitAir) 
             transform.Translate(new Vector3(_moving.x, 0, 0) * (_characterDataProcessor.speed * Time.deltaTime));
+
+        // Berserker hp red if state == 1
+        if (_characterDataProcessor.CharacterData.characterInfo.characterNum == 1 && characterState == 1) 
+        {
+            _characterDataProcessor.hp -= Time.fixedDeltaTime * 10;
+            if (_characterDataProcessor.hp < _characterDataProcessor.maxHp * 0.1f) characterState = 0;
+        }
+        
+        // Lancer mp red if state == 1
+        if (_characterDataProcessor.CharacterData.characterInfo.characterNum == 2 && characterState == 1) 
+        {
+            _characterDataProcessor.mp -= Time.fixedDeltaTime * _characterDataProcessor.CharacterData.characterInfo.skills[2].mp;
+            if (_characterDataProcessor.mp <= 0) characterState = 0;
+        }
     }
 
     public void OnMovement(InputAction.CallbackContext value)
@@ -147,11 +161,24 @@ public class CharacterBehavior : MonoBehaviour
     {
         attackTime = time;
     }
+
+    private bool SkillCoolAndMpCheck(int n)
+    {
+        if (_expeditionManager.CooldownTimes[characterNum, n - 1] == 0 && _characterDataProcessor.mp >=
+            _characterDataProcessor.CharacterData.characterInfo.skills[n].mp)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     public void OnSkill1(InputAction.CallbackContext value)
     {
         if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
-        if (attackTime == 0 && value.started)
+        if (attackTime == 0 && value.started && SkillCoolAndMpCheck(1))
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[1].skillNum);
         }
@@ -160,7 +187,7 @@ public class CharacterBehavior : MonoBehaviour
     public void OnSkill2(InputAction.CallbackContext value)
     {
         if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
-        if (attackTime == 0 && value.started)
+        if (attackTime == 0 && value.started && SkillCoolAndMpCheck(2))
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[2].skillNum);
         }
@@ -169,7 +196,7 @@ public class CharacterBehavior : MonoBehaviour
     public void OnSkill3(InputAction.CallbackContext value)
     {
         if (_expeditionManager.currentPlayerNum != characterNum|| hitAir) return;
-        if (attackTime == 0 && value.started)
+        if (attackTime == 0 && value.started && SkillCoolAndMpCheck(3))
         {
             _characterSkills.Skill(_characterDataProcessor.CharacterData.characterInfo.skills[3].skillNum);
         }
@@ -201,6 +228,7 @@ public class CharacterBehavior : MonoBehaviour
         }
         else if (invincibleTime == 0)
         {
+            _characterDataProcessor.hp -= damage;
             _animator.SetTrigger("hit");
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.AddForce(knockback, ForceMode2D.Impulse);

@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class HitBoxCheck : MonoBehaviour
 {
+    private CharacterBehavior _characterBehavior;
+    private CharacterDataProcessor _characterDataProcessor;
     public Vector2 boxOffset, boxSize;
     public float damage;
     public Vector2 airborne;
@@ -22,6 +24,8 @@ public class HitBoxCheck : MonoBehaviour
 
     private void Start()
     {
+        _characterBehavior = transform.parent.GetComponent<CharacterBehavior>();
+        _characterDataProcessor = transform.parent.GetComponent<CharacterDataProcessor>();
         // cine = transform.parent.parent.GetComponent<ExpeditionManager>().cine;
     }
 
@@ -44,6 +48,17 @@ public class HitBoxCheck : MonoBehaviour
             if (item.tag == "Mob")
             {
                 Debug.Log("Hit!! Damage : " + damage);
+                if (_characterDataProcessor != null && _characterDataProcessor.CharacterData.characterInfo.characterNum == 1)
+                {
+                    if (_characterBehavior.characterState == 0)
+                    {
+                        _characterDataProcessor.hp += damage / 100f;
+                    }
+                    else
+                    {
+                        _characterDataProcessor.hp += damage / 50f;
+                    }
+                }
                 if (item.transform.position.x < transform.parent.position.x)
                 {
                     item.gameObject.GetComponent<MonsterBehavior>().TakeHit(damage, new Vector2(-airborne.x, airborne.y), stunTime);

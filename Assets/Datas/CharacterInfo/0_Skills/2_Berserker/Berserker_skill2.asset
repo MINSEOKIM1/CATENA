@@ -15,7 +15,8 @@ MonoBehaviour:
   skillName: "\uBD84\uB178"
   description: "\uBD84\uB178 \uC0C1\uD0DC\uC5D0 \uB3CC\uC785\uD55C\uB2E4"
   skillImage: {fileID: 0}
-  coolDownTime: 0
+  coolDownTime: 5
+  mp: 0
   skillNum: 11
   defaultDamage: 0
   statCoefficient:
@@ -25,3 +26,5 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  airborne: {x: 0, y: 0}
+  stunTime: 0

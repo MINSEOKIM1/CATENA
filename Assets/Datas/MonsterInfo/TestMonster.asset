@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestMonster
   m_EditorClassIdentifier: 
   mobName: 
-  hp: 1000
+  hp: 999999
   mp: 100
   speed: 5
   stats:

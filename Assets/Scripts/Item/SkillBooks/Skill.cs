@@ -11,6 +11,7 @@ public class Skill : ScriptableObject
 
     public Sprite skillImage;
     public float coolDownTime;
+    public float mp;
     
     public int skillNum;
     public float defaultDamage;

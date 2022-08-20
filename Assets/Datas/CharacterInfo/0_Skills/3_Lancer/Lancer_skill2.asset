@@ -16,7 +16,8 @@ MonoBehaviour:
   description: "\uAC70\uB300\uD55C \uCC3D\uC744 \uC5EC\uB7EC \uAC1C \uB5A8\uC5B4\uB728\uB9AC\uBA70
     \uB3CC\uC9C4\uD55C\uB2E4."
   skillImage: {fileID: 0}
-  coolDownTime: 0
+  coolDownTime: 20
+  mp: 0
   skillNum: 14
   defaultDamage: 200
   statCoefficient:
