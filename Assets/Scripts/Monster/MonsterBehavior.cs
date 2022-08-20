@@ -37,7 +37,10 @@ public class MonsterBehavior : MonoBehaviour
    private MonsterSkills _monsterSkills;
    private Animator _animator;
    private Rigidbody2D _rigidbody2D;
+   private BoxCollider2D _boxcollider2D;
    
+   [SerializeField] int attackType; // 0 - goblin, 1 - skeleton
+
    private void OnDrawGizmos()
    {
       Gizmos.color = Color.red;
@@ -51,6 +54,7 @@ public class MonsterBehavior : MonoBehaviour
       
       _rigidbody2D = GetComponent<Rigidbody2D>();
       _animator = GetComponentInChildren<Animator>();
+      _boxcollider2D = GetComponent<BoxCollider2D>();
    }
 
    private void FixedUpdate()
@@ -61,7 +65,7 @@ public class MonsterBehavior : MonoBehaviour
          {
             _isDead = true;
             _animator.SetTrigger("dead");
-            GetComponent<BoxCollider2D>().isTrigger = true;
+            _boxcollider2D.isTrigger = true;
             _rigidbody2D.gravityScale = 0;
             Invoke("Delete", 5f);
          }
@@ -97,7 +101,7 @@ public class MonsterBehavior : MonoBehaviour
          {
             if (i.tag == "Player")
             {
-               _monsterSkills.Skill(0);
+               _monsterSkills.Skill(attackType);
                if (i.transform.position.x < transform.position.x)
                {
                   transform.localScale = new Vector3(-1, 1, 1);
