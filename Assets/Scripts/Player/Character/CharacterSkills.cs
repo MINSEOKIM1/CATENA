@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
@@ -16,6 +17,7 @@ public class CharacterSkills : MonoBehaviour
     private CharacterBehavior _characterBehavior;
     private HitBoxCheck _hitBoxCheck;
     private Rigidbody2D _rigidbody;
+    private ExpeditionManager _expeditionManager;
 
     public float knightDash;
     public float berserkerDash;
@@ -41,6 +43,7 @@ public class CharacterSkills : MonoBehaviour
         _characterDataProcessor = GetComponent<CharacterDataProcessor>();
         _hitBoxCheck = GetComponentInChildren<HitBoxCheck>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _expeditionManager = transform.parent.GetComponent<ExpeditionManager>();
     }
 
     private void FixedUpdate()
@@ -196,6 +199,13 @@ public class CharacterSkills : MonoBehaviour
     {
         var arrow = Instantiate(o, transform.position + dir + offset, Quaternion.identity);
         arrow.GetComponent<Throwing>().SetInfo(damage, stun, speed, airborne, dir);
+    }
+
+    private void CooldownAndMp(int n)
+    {
+        _characterDataProcessor.mp -= _characterDataProcessor.CharacterData.characterInfo.skills[n].mp;
+        _expeditionManager.CooldownTimes[_characterBehavior.characterNum, n - 1] =
+            _characterDataProcessor.CharacterData.characterInfo.skills[n].coolDownTime;
     }
 
     IEnumerator Attack0() // onehand normal attack
@@ -381,6 +391,8 @@ public class CharacterSkills : MonoBehaviour
         _animator.SetInteger("characterNum", 0);
         _animator.SetInteger("skillNum", 0);
         _animator.SetTrigger("skill");
+        
+        CooldownAndMp(1);
 
         float damage = CalculateSkillDamage(1) * 0.5f;
         AttackBoundaryCheck(new Vector2(1.2f, 0), new Vector2(2.8f, 2.1f),
@@ -403,7 +415,7 @@ public class CharacterSkills : MonoBehaviour
         _animator.SetInteger("characterNum", 0);
         _animator.SetInteger("skillNum", 1);
         _animator.SetTrigger("skill");
-        
+
         float damage = CalculateSkillDamage(2);
         AttackBoundaryCheck(new Vector2(0.8f, 0), new Vector2(16f, 4f),
             damage, 
@@ -414,6 +426,7 @@ public class CharacterSkills : MonoBehaviour
         yield return new WaitForFixedUpdate();
         _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
         _characterBehavior.invincibleTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+        CooldownAndMp(2);
     }
     
     IEnumerator KnightSkill2() 
@@ -424,6 +437,7 @@ public class CharacterSkills : MonoBehaviour
 
         yield return new WaitForFixedUpdate();
         _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+        CooldownAndMp(3);
     }
     
     IEnumerator BerserkerSkill0()
@@ -440,6 +454,8 @@ public class CharacterSkills : MonoBehaviour
                 _characterDataProcessor.CharacterData.characterInfo.skills[1].airborne,
                 _characterDataProcessor.CharacterData.characterInfo.skills[1].stunTime);
 
+            CooldownAndMp(1);
+            
             yield return new WaitForFixedUpdate();
             _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
         }
@@ -453,6 +469,7 @@ public class CharacterSkills : MonoBehaviour
             _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
             yield return new WaitForSeconds(0.2f);
             _characterBehavior.canMove = true;
+            CooldownAndMp(1);
             
             float damage = CalculateSkillDamage(1) * 0.1f;
             AttackBoundaryCheck(Vector2.zero, new Vector2(16f, 2f),
@@ -467,6 +484,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator BerserkerSkill1()
     {
+        CooldownAndMp(2);
         if (_characterBehavior.characterState == 0)
         {
             _rigidbody.AddForce((Vector2.right * (transform.localScale.x * 2) + Vector2.up) * berserkerDash , ForceMode2D.Impulse);
@@ -532,6 +550,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator BerserkerSkill2()
     {
+        CooldownAndMp(3);
         if (_characterBehavior.characterState == 0)
         {
             _animator.SetInteger("characterNum", 1);
@@ -552,6 +571,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator LancerSkill0()
     {
+        CooldownAndMp(1);
         float damage = CalculateSkillDamage(1) * 0.1f;
         AttackBoundaryCheck(new Vector2(3.6f, 0), new Vector2(7.7f, 2.4f),
             damage, 
@@ -575,7 +595,11 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator LancerSkill1()
     {
+        var eff2 = Instantiate(effects[2], transform.position, quaternion.identity);
+        eff2.GetComponentInChildren<Explosion>().SetInfo(0, 0, Vector2.zero);
+
         _characterBehavior.characterState = (_characterBehavior.characterState + 1) % 2;
+        CooldownAndMp(2);
 
         yield return new WaitForFixedUpdate();
     }
@@ -607,6 +631,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator LancerSkill2()
     {
+        CooldownAndMp(3);
         float damage = CalculateSkillDamage(3);
         AttackBoundaryCheck(new Vector2(-2.6f, 0), new Vector2(15f, 9f),
             damage, 
@@ -638,6 +663,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator RangerSkill0()
     {
+        CooldownAndMp(1);
         float damage = CalculateSkillDamage(1);
 
         _animator.SetInteger("characterNum", 3);
@@ -657,8 +683,9 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator RangerSkill1()
     {
+        CooldownAndMp(2);
         _rigidbody.velocity = Vector2.zero;
-        ;
+        
         _rigidbody.AddForce(Vector2.up * 16 + Vector2.left * (6 * transform.localScale.x), ForceMode2D.Impulse);
         float damage = CalculateSkillDamage(2);
 
@@ -685,6 +712,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator RangerSkill2()
     {
+        CooldownAndMp(3);
         float damage = CalculateSkillDamage(2);
 
         _animator.SetInteger("characterNum", 3);
@@ -710,6 +738,7 @@ public class CharacterSkills : MonoBehaviour
     
     IEnumerator GunslingerSkill0()
     {
+        CooldownAndMp(1);
         float damage = CalculateSkillDamage(1);
 
         _animator.SetInteger("characterNum", 4);
@@ -725,6 +754,7 @@ public class CharacterSkills : MonoBehaviour
     }
     IEnumerator GunslingerSkill1()
     {
+        CooldownAndMp(2);
         float damage = CalculateSkillDamage(2);
 
         _animator.SetInteger("characterNum", 4);
@@ -746,6 +776,7 @@ public class CharacterSkills : MonoBehaviour
     }
     IEnumerator GunslingerSkill2()
     {
+        CooldownAndMp(3);
         _animator.SetInteger("characterNum", 4);
         _animator.SetInteger("skillNum", 2);
         _animator.SetTrigger("skill");
@@ -823,6 +854,8 @@ public class CharacterSkills : MonoBehaviour
                 _characterDataProcessor.CharacterData.characterInfo.skills[1].airborne,
                 _characterDataProcessor.CharacterData.characterInfo.skills[1].stunTime);
         }
+
+        CooldownAndMp(1);
     }
     
     IEnumerator ThiefSkill1()
@@ -840,6 +873,7 @@ public class CharacterSkills : MonoBehaviour
 
         yield return new WaitForFixedUpdate();
         _characterBehavior.SetAttackTime(_animator.GetCurrentAnimatorStateInfo(0).length);
+        CooldownAndMp(2);
     }
     
     IEnumerator ThiefSkill2()
@@ -858,12 +892,13 @@ public class CharacterSkills : MonoBehaviour
             (Vector2)transform.position,
             new Vector2(32f, 32f), 0);
 
-        
+        int kk = 0;
         for (int i = 0; i < collider2Ds.Length; i++)
         {
             MonsterBehavior mb = collider2Ds[i].GetComponent<MonsterBehavior>();
             if (collider2Ds[i].tag == "Mob" && !mb.isGrounded && mb.state == 3)
             {
+                kk++;
                 _rigidbody.velocity = Vector2.zero;
                 skillNum = Random.Range(2, 5);
                 _animator.SetInteger("characterNum", 7);
@@ -879,6 +914,8 @@ public class CharacterSkills : MonoBehaviour
                 _characterBehavior.SetAttackTime(1.0f / 10);
             }
         }
+        
+        if (kk > 0) CooldownAndMp(3);
     }
     
     IEnumerator AssassinSkill0()
@@ -917,6 +954,7 @@ public class CharacterSkills : MonoBehaviour
                 _characterDataProcessor.CharacterData.characterInfo.skills[1].stunTime,
                 _characterDataProcessor.CharacterData.characterInfo.skills[1].airborne,
                 o);
+            CooldownAndMp(1);
         }
     }
     
@@ -941,6 +979,7 @@ public class CharacterSkills : MonoBehaviour
                 _characterDataProcessor.CharacterData.characterInfo.skills[2].airborne,
                 Vector2.down + 0.5f * (Vector2.left + Vector2.right * (0.5f * i)), effects[0]);
         }
+        CooldownAndMp(2);
 
         _characterBehavior.canMove = false;
     }
@@ -966,5 +1005,6 @@ public class CharacterSkills : MonoBehaviour
             _characterDataProcessor.CharacterData.characterInfo.skills[3].stunTime,
             _characterDataProcessor.CharacterData.characterInfo.skills[3].airborne,
             15);
+        CooldownAndMp(3);
     }
 }
