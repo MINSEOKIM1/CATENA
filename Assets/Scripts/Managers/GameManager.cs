@@ -18,11 +18,13 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
+        
+        DontDestroyOnLoad(gameObject);
         
         AudioManager = GetComponentInChildren<AudioManager>();
         DataManager = GetComponentInChildren<DataManager>();

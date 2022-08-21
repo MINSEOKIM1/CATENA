@@ -15,7 +15,7 @@ MonoBehaviour:
   characterNum: 2
   characterSLA: {fileID: 7108339969198208228, guid: a1510a660b27f48b59ddc2e6d535f8f6, type: 3}
   characterName: Lancer
-  characterImage: {fileID: 0}
+  characterImage: {fileID: 21300000, guid: 7e11416905f6e46cc8eec047e4fbb09b, type: 3}
   hp: 100
   mp: 60
   speed: 6

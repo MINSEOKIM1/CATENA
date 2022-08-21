@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     public ExpeditionManager expeditionManager;
 
+    // In Dungeon
     public void SetCurrentCharacter(CharacterDataProcessor ctx)
     {
         currentCharacterData = ctx;
@@ -29,4 +30,7 @@ public class UIManager : MonoBehaviour
             characterInfoUI[k++].SetInfos(characterDataProcessors[i], i, expeditionManager);
         }
     }
+    
+    // In Ready
+    
 }
