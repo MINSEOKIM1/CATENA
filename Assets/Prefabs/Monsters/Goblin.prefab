@@ -227,8 +227,10 @@ MonoBehaviour:
   _stun: 0
   boxOffset: {x: 0, y: 0}
   attackBoundary: {x: 5.2, y: 4.26}
+  floorOffset: {x: 0, y: 0}
   isGrounded: 0
   state: 0
+  attackType: 0
 --- !u!114 &7554859948340191413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,3 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd43d7fb54e3d43ce896f282f73e7f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 2.1, y: 0}
+  boxSize: {x: 3.7, y: 2.7}
+  damage: 10
+  airborne: {x: 3, y: 6}

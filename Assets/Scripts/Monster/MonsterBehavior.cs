@@ -20,6 +20,7 @@ public class MonsterBehavior : MonoBehaviour
    public float _stun;
 
    public Vector2 boxOffset, attackBoundary;
+   public Vector2 floorOffset;
 
    public bool isGrounded;
    public int state;
@@ -39,12 +40,15 @@ public class MonsterBehavior : MonoBehaviour
    private Rigidbody2D _rigidbody2D;
    private BoxCollider2D _boxcollider2D;
    
-   [SerializeField] int attackType; // 0 - goblin, 1 - skeleton
+   [SerializeField] int attackType; // 0 - goblin, skeleton 1 - boar
 
    private void OnDrawGizmos()
    {
       Gizmos.color = Color.red;
       Gizmos.DrawWireCube((Vector2)transform.position + boxOffset, attackBoundary);
+      Gizmos.color = Color.blue;
+      Vector3 v = transform.position + new Vector3(transform.localScale.x, 0, 0) + transform.localScale.x * new Vector3(floorOffset.x, floorOffset.y);
+      Gizmos.DrawLine(v, v + Vector3.down * 3);
    }
 
    private void Start()
@@ -125,7 +129,7 @@ public class MonsterBehavior : MonoBehaviour
 
       _animator.SetInteger("state", state);
 
-      RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(transform.localScale.x, 0, 0),
+      RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(transform.localScale.x, 0, 0) + transform.localScale.x * new Vector3(floorOffset.x, floorOffset.y),
          Vector2.down, 3, 1 << 6);
       Debug.DrawRay(transform.position + new Vector3(transform.localScale.x, 0, 0), Vector2.down * 3, Color.blue);
       
@@ -200,5 +204,9 @@ public class MonsterBehavior : MonoBehaviour
    void Delete()
    {
       Destroy(gameObject);
+   }
+
+   public void Rush(){
+      transform.Translate(Vector3.right * (_monsterDataProcessor.monsterInfo.speed * Time.deltaTime * 1.7f) * transform.localScale.x);
    }
 }
