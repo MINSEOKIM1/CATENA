@@ -9,6 +9,16 @@ public class MonsterSkills : MonoBehaviour
     private MonsterHitBoxCheck _monsterHitBoxCheck;
     private MonsterBehavior _monsterBehavior;
 
+    public Vector2 offset, boxSize;
+    public float damage;
+    public Vector2 airborne;
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube((Vector2)transform.position + transform.localScale.x * offset, boxSize);
+    }
+
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -16,12 +26,12 @@ public class MonsterSkills : MonoBehaviour
         _monsterBehavior = GetComponent<MonsterBehavior>();
     }
     
-    private void AttackBoundaryCheck(Vector2 offset, Vector2 boxSize, float damage, Vector2 airborne)
+    private void AttackBoundaryCheck(Vector2 _offset, Vector2 _boxSize, float _damage, Vector2 _airborne)
     {
-        _monsterHitBoxCheck.boxOffset = offset;
-        _monsterHitBoxCheck.boxSize = boxSize;
-        _monsterHitBoxCheck.damage = damage;
-        _monsterHitBoxCheck.airborne = airborne;
+        _monsterHitBoxCheck.boxOffset = _offset;
+        _monsterHitBoxCheck.boxSize = _boxSize;
+        _monsterHitBoxCheck.damage = _damage;
+        _monsterHitBoxCheck.airborne = _airborne;
     }
 
     public void Skill(int n)
@@ -30,6 +40,9 @@ public class MonsterSkills : MonoBehaviour
         {
             case 0:
                 StartCoroutine(GoblinAttack());
+                break;
+            case 1:
+                StartCoroutine(BoarAttack());
                 break;
             default :
                 throw new ArgumentOutOfRangeException();
@@ -42,15 +55,52 @@ public class MonsterSkills : MonoBehaviour
         _animator.SetInteger("state", 0);
         _monsterBehavior.state = 4;
 
-        float damage = 10;
-
-        AttackBoundaryCheck(new Vector2(2.1f, 0), new Vector2(3.7f, 2.7f),
+        AttackBoundaryCheck(offset, boxSize,
             damage,
-            new Vector2(3, 6));
+            airborne);
         
         yield return new WaitForFixedUpdate();
         
         if (_monsterBehavior.state == 4)
         _monsterBehavior.attackTime = _animator.GetCurrentAnimatorStateInfo(0).length + 1;
+    }
+
+    IEnumerator BoarAttack()
+    {
+        _animator.SetTrigger("attackReady");
+        _animator.SetInteger("state", 0);
+        _monsterBehavior.state = 4;
+
+        float damage = 10;
+
+        AttackBoundaryCheck(offset, boxSize, damage, airborne);
+        
+        yield return new WaitForFixedUpdate();
+        
+        if (_monsterBehavior.state == 4)
+        _monsterBehavior.attackTime = _animator.GetCurrentAnimatorStateInfo(0).length + 2;
+
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length / _animator.GetCurrentAnimatorStateInfo(0).speed + 0.5f);
+
+        if (_monsterBehavior.state == 4)
+            _animator.SetTrigger("attack");
+        
+        yield return new WaitForFixedUpdate();
+
+        if (_monsterBehavior.state == 4)
+        _monsterBehavior.attackTime = _animator.GetCurrentAnimatorStateInfo(0).length + 1;
+        else yield break;
+
+        bool attacked = true;
+        while(_monsterBehavior.attackTime > 0 && _monsterBehavior.state == 4){
+            if(_monsterHitBoxCheck.AttackBoundaryCheck(attacked)){
+                attacked = false;
+            }
+            _monsterBehavior.Rush();
+            yield return new WaitForFixedUpdate();
+        }
+        
+        if(_monsterBehavior.attackTime < 0)
+            _animator.SetTrigger("attackStop");
     }
 }
