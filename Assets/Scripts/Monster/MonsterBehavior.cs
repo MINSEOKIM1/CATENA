@@ -25,7 +25,7 @@ public class MonsterBehavior : MonoBehaviour
    public bool isGrounded;
    public int state;
 
-   private bool _isDead;
+   protected bool _isDead;
    /*
     * 0 : idle
     * 1 : walk - left
@@ -34,11 +34,11 @@ public class MonsterBehavior : MonoBehaviour
     * 4 : attack
     */
 
-   private MonsterDataProcessor _monsterDataProcessor;
-   private MonsterSkills _monsterSkills;
-   private Animator _animator;
-   private Rigidbody2D _rigidbody2D;
-   private BoxCollider2D _boxcollider2D;
+   protected MonsterDataProcessor _monsterDataProcessor;
+   protected MonsterSkills _monsterSkills;
+   protected Animator _animator;
+   protected Rigidbody2D _rigidbody2D;
+   protected BoxCollider2D _boxcollider2D;
    
    [SerializeField] int attackType; // 0 - goblin, skeleton 1 - boar
 
@@ -157,7 +157,7 @@ public class MonsterBehavior : MonoBehaviour
       }
    }
 
-   public void TakeHit(float damage, Vector2 airborne, float stunTime)
+   public virtual void TakeHit(float damage, Vector2 airborne, float stunTime)
    {
       if (_isDead) return;
       _monsterDataProcessor.hp -= damage * (100 / (100 + _monsterDataProcessor.monsterInfo.stats[1]));

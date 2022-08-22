@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class MonsterSkills : MonoBehaviour
 {
-    private Animator _animator;
-    private MonsterHitBoxCheck _monsterHitBoxCheck;
-    private MonsterBehavior _monsterBehavior;
+    protected Animator _animator;
+    protected MonsterHitBoxCheck _monsterHitBoxCheck;
+    protected MonsterBehavior _monsterBehavior;
 
     public Vector2 offset, boxSize;
     public float damage;
@@ -19,14 +19,14 @@ public class MonsterSkills : MonoBehaviour
         Gizmos.DrawWireCube((Vector2)transform.position + transform.localScale.x * offset, boxSize);
     }
 
-    private void Start()
+    protected void Start()
     {
         _animator = GetComponentInChildren<Animator>();
         _monsterHitBoxCheck = GetComponentInChildren<MonsterHitBoxCheck>();
         _monsterBehavior = GetComponent<MonsterBehavior>();
     }
     
-    private void AttackBoundaryCheck(Vector2 _offset, Vector2 _boxSize, float _damage, Vector2 _airborne)
+    protected void AttackBoundaryCheck(Vector2 _offset, Vector2 _boxSize, float _damage, Vector2 _airborne)
     {
         _monsterHitBoxCheck.boxOffset = _offset;
         _monsterHitBoxCheck.boxSize = _boxSize;

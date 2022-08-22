@@ -16,7 +16,7 @@ public class MonsterHitBoxCheck : MonoBehaviour
         {
             offset = new Vector2(-boxOffset.x, boxOffset.y);
         }
-
+        
         Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(
             (Vector2)transform.parent.position + offset,
             boxSize, 0);
