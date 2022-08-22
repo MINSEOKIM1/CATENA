@@ -208,6 +208,12 @@ public class CharacterSkills : MonoBehaviour
             _characterDataProcessor.CharacterData.characterInfo.skills[n].coolDownTime;
     }
 
+    public void CharacterDie()
+    {
+        var eff2 = Instantiate(effects[2], transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+        eff2.GetComponentInChildren<Explosion>().SetInfo(0, 0, Vector2.zero);
+    }
+
     IEnumerator Attack0() // onehand normal attack
     {
         int attackNum = Random.Range(0, 3);
@@ -606,11 +612,12 @@ public class CharacterSkills : MonoBehaviour
 
     public IEnumerator LancerSkill1_counter()
     {
+        _characterBehavior.attackTime = 0.3f;
         var eff = Instantiate(effects[1], 
             transform.position,
             Quaternion.identity);
 
-        var eff2 = Instantiate(effects[2], transform.position, quaternion.identity);
+        var eff2 = Instantiate(effects[2], transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         eff2.GetComponentInChildren<Explosion>().SetInfo(0, 0, Vector2.zero);
         
         HitBoxCheck h = eff.GetComponentInChildren<HitBoxCheck>();

@@ -51,6 +51,15 @@ public class CharacterBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_characterDataProcessor.hp == 0 && _characterDataProcessor.isDead == false)
+        {
+            _characterDataProcessor.isDead = true;
+            _characterSkills.CharacterDie();
+            gameObject.SetActive(false);
+        }
+
+        if (_characterDataProcessor.isDead) return;
+        
         if (attackTime > 0)
         {
             attackTime -= Time.deltaTime;
@@ -222,8 +231,9 @@ public class CharacterBehavior : MonoBehaviour
 
     public IEnumerator TakeHit(float damage, Vector2 knockback)
     {
-        if (_characterDataProcessor.CharacterData.characterInfo.characterNum == 2 && characterState == 1)
+        if (_characterDataProcessor.CharacterData.characterInfo.characterNum == 2 && characterState == 1 )
         {
+            if (attackTime == 0)
             StartCoroutine(_characterSkills.LancerSkill1_counter());
         }
         else if (invincibleTime == 0)
