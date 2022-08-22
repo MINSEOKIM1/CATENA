@@ -73,7 +73,7 @@ public class MonsterSkills : MonoBehaviour
 
         float damage = 10;
 
-        AttackBoundaryCheck(offset, boxSize, damage, airborne);
+        AttackBoundaryCheck(offset, boxSize, damage, new Vector2(10,10));
         
         yield return new WaitForFixedUpdate();
         

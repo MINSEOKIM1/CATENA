@@ -57,7 +57,7 @@ public class MonsterHitBoxCheck : MonoBehaviour
             if (item.tag == "Player")
             {
                 Debug.Log("Player Hit!! Damage : " + damage);
-                float monsterDamage = attacked ? damage : 0;
+                float monsterDamage = attacked ? damage : 3;
                 if (item.transform.position.x < transform.parent.position.x)
                 {
                     StartCoroutine(item.gameObject.GetComponent<CharacterBehavior>().TakeHit(monsterDamage, new Vector2(-airborne.x, airborne.y)));
