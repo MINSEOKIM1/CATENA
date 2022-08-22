@@ -10,6 +10,12 @@ public class CharacterDataProcessor : MonoBehaviour
     public float hp, maxHp, mp, maxMp, speed, jumpPower;
     public float[] stats;
     public List<float> coolDownTimes;
+    public bool isDead;
+
+    private void Start()
+    {
+        isDead = false;
+    }
 
     private void FixedUpdate()
     {
@@ -25,6 +31,26 @@ public class CharacterDataProcessor : MonoBehaviour
         maxHp = hp;
         mp = cd.characterInfo.mp;
         maxMp = mp;
+
+        speed = cd.characterInfo.speed;
+        jumpPower = cd.characterInfo.jumpPower;
+
+        stats = new float[cd.characterInfo.stats.Length];
+        
+        for (int i = 0; i < stats.Length; i++)
+        {
+            stats[i] = cd.characterInfo.stats[i];
+        }
+    }
+    
+    public void SetCharacterData(CharacterData cd, float hp, float mp)
+    {
+        CharacterData = cd;
+
+        this.hp = hp;
+        maxHp = cd.characterInfo.hp;
+        this.mp = mp;
+        maxMp = cd.characterInfo.mp;
 
         speed = cd.characterInfo.speed;
         jumpPower = cd.characterInfo.jumpPower;

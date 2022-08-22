@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,9 @@ public class CharacterInfoUI : MonoBehaviour
 
     public Slider hpBar, mpBar;
     public Image characterImage;
+    public Image tagCoolImage;
+
+    public TMP_Text characterNumText;
 
     public SkillSlot[] skillSlots;
 
@@ -24,6 +28,7 @@ public class CharacterInfoUI : MonoBehaviour
         expeditionManager = em;
 
         characterNum = n;
+        characterNumText.text = (characterNum+1).ToString();
 
         characterImage.sprite = cdp.CharacterData.characterInfo.characterImage;
 
@@ -41,10 +46,12 @@ public class CharacterInfoUI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (characterDataProcessor != null)
-        {
-            hpBar.value = (characterDataProcessor.hp / characterDataProcessor.maxHp);
-            mpBar.value = (characterDataProcessor.mp / characterDataProcessor.maxMp);
-        }
+        if (characterDataProcessor == null) return;
+
+        hpBar.value = (characterDataProcessor.hp / characterDataProcessor.maxHp);
+        mpBar.value = (characterDataProcessor.mp / characterDataProcessor.maxMp);
+        if (!characterDataProcessor.isDead)
+            tagCoolImage.fillAmount = expeditionManager.tagCooldown[characterNum] / 3;
+        else tagCoolImage.fillAmount = 1;
     }
 }

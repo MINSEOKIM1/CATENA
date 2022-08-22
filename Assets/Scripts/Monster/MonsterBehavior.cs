@@ -178,11 +178,14 @@ public class MonsterBehavior : MonoBehaviour
 
    IEnumerator HitAnimation()
    {
-      _animator.SetTrigger("hit");
-      yield return new WaitForFixedUpdate();
-      attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
-      state = 3;
-      _animator.SetInteger("state", 3);
+      if (state != 4 || _stun > 0 || _rigidbody2D.velocity.y > 0)
+      {
+         _animator.SetTrigger("hit");
+         yield return new WaitForFixedUpdate();
+         attackTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+         state = 3;
+         _animator.SetInteger("state", 3);
+      }
    }
 
    private void OnCollisionEnter2D(Collision2D col)
