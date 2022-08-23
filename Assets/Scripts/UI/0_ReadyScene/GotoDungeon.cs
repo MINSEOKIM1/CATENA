@@ -7,6 +7,6 @@ public class GotoDungeon : MonoBehaviour
 {
     public void GoDungeon()
     {
-        SceneManager.LoadScene("Town1");
+        SceneManager.LoadScene("Dungeon1");
     }
 }

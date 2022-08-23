@@ -160,6 +160,15 @@ public class ExpeditionManager : MonoBehaviour
         extraAd = 0; extraAp = 0; extraDef = 0; extraAvd = 0;
     }
 
+    public void Restart(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.started && _gameOver)
+        {
+            GameManager.Instance.DataManager.inDungeon = false;
+            SceneManager.LoadScene("ReadyScene");
+        }
+    }
+
     public void ChangeCharacter(InputAction.CallbackContext value)
     {
         if (value.started && (int)value.ReadValue<float>() != currentPlayerNum + 1 &&

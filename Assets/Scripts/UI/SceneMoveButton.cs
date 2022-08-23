@@ -9,6 +9,7 @@ public class SceneMoveButton : MonoBehaviour
 
     public void GoScene()
     {
+        GameManager.Instance.DataManager.inDungeon = false;
         SceneManager.LoadScene(sceneName);
     }
 }

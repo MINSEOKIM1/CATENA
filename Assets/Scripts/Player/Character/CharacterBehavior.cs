@@ -257,8 +257,30 @@ public class CharacterBehavior : MonoBehaviour
     {
         if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Mob")
         {
-            if (col.contacts[0].normal.y > 0.9) _animator.SetBool("onAir", false);
-            hitAir = false;
+            Debug.Log(col.contacts[0].normal.y);
+            for (int i = 0; i < col.contacts.Length; i++)
+            {
+                if (col.contacts[i].normal.y > 0.5)
+                {
+                    _animator.SetBool("onAir", false);
+                    hitAir = false;
+                }
+            }
+        }
+    }
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Mob")
+        {
+            Debug.Log(col.contacts[0].normal.y);
+            for (int i = 0; i < col.contacts.Length; i++)
+            {
+                if (col.contacts[i].normal.y > 0.5)
+                {
+                    _animator.SetBool("onAir", false);
+                    hitAir = false;
+                }
+            }
         }
     }
 
@@ -266,6 +288,7 @@ public class CharacterBehavior : MonoBehaviour
     {
         if (col.gameObject.tag == "Ground")
         {
+            Debug.Log("ASDGSDG");
             _animator.SetBool("onAir", true);
         }
     }

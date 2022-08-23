@@ -190,7 +190,15 @@ public class MonsterBehavior : MonoBehaviour
 
    private void OnCollisionEnter2D(Collision2D col)
    {
-      if (col.contacts[0].normal.y > 0.9f && col.gameObject.tag == "Ground")
+      if (col.contacts[0].normal.y > 0.5f && col.gameObject.tag == "Ground")
+      {
+         isGrounded = true;
+      }
+   }
+   
+   private void OnCollisionStay2D(Collision2D col)
+   {
+      if (col.contacts[0].normal.y > 0.5f && col.gameObject.tag == "Ground")
       {
          isGrounded = true;
       }
